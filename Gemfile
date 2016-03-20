@@ -10,6 +10,13 @@ gem 'spring', :group => :development
 
 gem 'sqlite3'
 
+gem 'figaro'
+
+group :production do
+	gem 'unicorn', '~> 5.0', '>= 5.0.1'
+	gem "unicorn-rails"
+end
+
 
 
 # To use ActiveModel has_secure_password
