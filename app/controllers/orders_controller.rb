@@ -37,6 +37,17 @@ class OrdersController < ApplicationController
     head :no_content
   end
 
+  def add_item
+    @order = Order.find params[:id]
+    order_item = @order_item.build(item_id: params[:id])
+
+    if  order_item.save
+      render json: order_item, status: 201
+    else
+      render json: order_item.errors, status: unprocessable_entity
+    end
+  end
+
   private
 
     def set_order
