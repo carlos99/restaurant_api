@@ -39,7 +39,8 @@ class OrdersController < ApplicationController
 
   def add_item
     @order = Order.find params[:id]
-    order_item = @order_item.build(item_id: params[:id])
+    order_item = OrderItem.where(order_id: @order.id, item_id: params[:item_id].first.increment(:quantity) rescue
+      order_item = @order_items.build(item_id: params[:id])
 
     if  order_item.save
       render json: order_item, status: 201
